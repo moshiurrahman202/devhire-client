@@ -3,6 +3,8 @@ import RootLayout from "../layouts/RootLayout.jsx";
 import Home from "../pages/home/Home.jsx";
 import Signup from "../pages/signup/Signup.jsx";
 import SignIn from "../pages/signin/SignIn.jsx";
+import HotJobs from "../pages/home/HotJobs.jsx";
+import JobDetails from "../pages/shared/JobDetails.jsx";
 
 
 const router = createBrowserRouter([
@@ -21,6 +23,10 @@ const router = createBrowserRouter([
       {
         path: "signin",
         Component: SignIn
+      },
+      {
+        path: 'jobs/:id',
+        Component: JobDetails,
       }
     ]
   },
