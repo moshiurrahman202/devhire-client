@@ -1,20 +1,43 @@
-// import { useParams } from "react-router";
-import { useNavigate } from "react-router";
+import axios from 'axios';
+import { useNavigate, useParams } from "react-router";
 import useAuth from "../../hooks/useAuth";
+import Swal from 'sweetalert2';
 
 
 const JobApply = () => {
-    const { user } = useAuth()
-    const navigate = useNavigate()
-    // const { id } = useParams()
+    const { user } = useAuth();
+    const {id: jobId} = useParams();
+    const navigate = useNavigate();
 
     const handleJobApply = e => {
         e.preventDefault();
         const linkedin = e.target.linkedin.value;
         const github = e.target.github.value;
         const resume = e.target.resume.value;
-        console.log(linkedin, github, resume);
-
+        const application = {
+            jobId,
+            applicant: user.email,
+            linkedin,
+            github,
+            resume
+        }
+        axios.post("http://localhost:3000/applications",{...application}
+        )
+        .then(res => {
+            if(res.data.insertedId){
+                Swal.fire({
+  position: "top-end",
+  icon: "success",
+  title: "Your application has been sunmitted!",
+  showConfirmButton: false,
+  timer: 1500
+});
+                
+            }
+        })
+        .then(err => {
+            console.log(err);
+        })
     }
     const goBack = () => {
         navigate(-1)
