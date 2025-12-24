@@ -3,7 +3,7 @@ import signinani from "../../assets/lotties/Login and Sign up.json"
 import Lottie from "lottie-react";
 import { AuthContext } from "../../context/AuthContext";
 import SocialLogin from "../shared/SocialLogin";
-import { useLocation, useNavigate } from "react-router";
+import { Link, useLocation, useNavigate } from "react-router";
 
 const SignIn = () => {
   const { signIn } = useContext(AuthContext);
@@ -38,8 +38,11 @@ const SignIn = () => {
               <input name="email" type="email" className="input" placeholder="Email" />
               <label className="label">Password</label>
               <input name="password" type="password" className="input" placeholder="Password" />
-              <div><a className="link link-hover">Forgot password?</a></div>
               <button className="btn btn-neutral mt-4">Sign In</button>
+              <div className="flex justify-between">
+                <div><a className="link link-hover">Lost your password?</a></div>
+              <div><Link className="link link-hover" to='/signup'>Don't have an Account? Sign Up</Link></div>
+              </div>
             </form>
             <SocialLogin></SocialLogin>
           </div>
