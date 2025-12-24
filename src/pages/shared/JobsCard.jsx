@@ -29,7 +29,7 @@ const JobsCard = ({ job }) => {
                     }
                 </div>
                 <div className="card-actions">
-                    <Link className="btn btn-sm btn-primary w-full" to={`/jobs/${_id}`}>Apply Naw!</Link>
+                    <Link className="btn btn-sm btn-primary w-full" to={`/jobs/${_id}`}>Details</Link>
                 </div>
             </div>
         </div>

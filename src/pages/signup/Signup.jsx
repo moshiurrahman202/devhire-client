@@ -2,7 +2,7 @@ import Lottie from "lottie-react";
 import signupanimation from "../../assets/lotties/Signup.json"
 import { useContext } from "react";
 import { AuthContext } from "../../context/AuthContext";
-import SocialLogin from "../shared/SocialLogin";
+import SocialLogin from "../shared/SocialLogin";;
 
 const Signup = () => {
   const { createUser } = useContext(AuthContext);

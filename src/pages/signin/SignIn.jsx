@@ -3,9 +3,14 @@ import signinani from "../../assets/lotties/Login and Sign up.json"
 import Lottie from "lottie-react";
 import { AuthContext } from "../../context/AuthContext";
 import SocialLogin from "../shared/SocialLogin";
+import { useLocation, useNavigate } from "react-router";
 
 const SignIn = () => {
-  const { signIn } = useContext(AuthContext)
+  const { signIn } = useContext(AuthContext);
+  const location = useLocation();
+  const Navigate = useNavigate();
+  const from = location.state || "/";
+  
   const handleSignIn = e => {
     e.preventDefault();
     const email = e.target.email.value
@@ -13,13 +18,13 @@ const SignIn = () => {
 
     signIn(email, pass)
     .then(userCredential => {
+      Navigate(from)
       console.log(userCredential.user);
     })
     .catch(err => {
       console.log(err.code);
       
     })
-    console.log(email, pass);
 
   }
   return (
