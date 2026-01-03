@@ -1,4 +1,5 @@
 import { use } from "react";
+import { Link } from "react-router";
 
 
 const MyPostedJobList = ({jobPostedByEmailPromise}) => {
@@ -14,7 +15,7 @@ const MyPostedJobList = ({jobPostedByEmailPromise}) => {
         <th></th>
         <th>Title</th>
         <th>Deadline</th>
-        <th>Favorite Color</th>
+        <th>View Applications</th>
       </tr>
     </thead>
     <tbody>
@@ -24,7 +25,7 @@ const MyPostedJobList = ({jobPostedByEmailPromise}) => {
         <th>{idx + 1}</th>
         <td>{job.title}</td>
         <td>{job.deadline}</td>
-        <td>Blue</td>
+        <td><Link to={`/applications/${job._id}`}>Applications</Link></td>
       </tr>)
       }
     </tbody>
