@@ -11,22 +11,26 @@ const AuthProvider = ({children}) => {
 
     const createUser = (email,pass) => {
         setLoading(true);
-        return createUserWithEmailAndPassword(auth,email, pass);
+        return createUserWithEmailAndPassword(auth,email, pass)
+        .finally(() => setLoading(false));
     }
 
     const signIn = (email, pass) => {
         setLoading(true)
         return signInWithEmailAndPassword(auth, email, pass)
+        .finally(() => setLoading(false));
     }
 
     const signOutUser = () => {
         setLoading(true)
         return signOut(auth)
+        .finally(() => setLoading(false));
     }
 
     const signInWithGoogle = () => {
         setLoading(true);
         return signInWithPopup(auth, provider)
+        .finally(() => setLoading(false));
     }
 
     useEffect(() => {

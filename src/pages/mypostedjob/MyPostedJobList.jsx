@@ -25,7 +25,7 @@ const MyPostedJobList = ({jobPostedByEmailPromise}) => {
         <th>{idx + 1}</th>
         <td>{job.title}</td>
         <td>{job.deadline}</td>
-        <td><Link to={`/applications/${job._id}`}>Applications</Link></td>
+        <td><Link to={`/applications/${job._id}`} className="link link-primary">Applications {job.applicationCount}</Link></td>
       </tr>)
       }
     </tbody>
