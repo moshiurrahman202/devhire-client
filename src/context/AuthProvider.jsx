@@ -2,41 +2,54 @@ import { useEffect, useState } from "react";
 import { AuthContext } from "./AuthContext";
 import { createUserWithEmailAndPassword, GoogleAuthProvider, onAuthStateChanged, signInWithEmailAndPassword, signInWithPopup, signOut } from "firebase/auth";
 import { auth } from "../firebase/firebase.init";
+import axios from "axios";
 
 const provider = new GoogleAuthProvider();
 
-const AuthProvider = ({children}) => {
+const AuthProvider = ({ children }) => {
     const [loading, setLoading] = useState(true)
     const [user, setUser] = useState(null)
 
-    const createUser = (email,pass) => {
+    const createUser = (email, pass) => {
         setLoading(true);
-        return createUserWithEmailAndPassword(auth,email, pass)
-        .finally(() => setLoading(false));
+        return createUserWithEmailAndPassword(auth, email, pass)
+            .finally(() => setLoading(false));
     }
 
     const signIn = (email, pass) => {
         setLoading(true)
         return signInWithEmailAndPassword(auth, email, pass)
-        .finally(() => setLoading(false));
+            .finally(() => setLoading(false));
     }
 
     const signOutUser = () => {
         setLoading(true)
         return signOut(auth)
-        .finally(() => setLoading(false));
+            .finally(() => setLoading(false));
     }
 
     const signInWithGoogle = () => {
         setLoading(true);
         return signInWithPopup(auth, provider)
-        .finally(() => setLoading(false));
+            .finally(() => setLoading(false));
     }
 
     useEffect(() => {
         const unSubscribe = onAuthStateChanged(auth, currentUser => {
             setUser(currentUser)
             setLoading(false)
+            if (currentUser?.email) {
+                const userData = { email: currentUser.email };
+                axios.post("http://localhost:3000/jwt", userData)
+                    .then(res => {
+                        localStorage.setItem("token", res.data)
+                    })
+                    .catch(err => {
+                        console.log("this is from auth provider error =>", err);
+
+                    })
+
+            }
             // console.log("after set onauth state change", currentUser);
         })
         return () => {
