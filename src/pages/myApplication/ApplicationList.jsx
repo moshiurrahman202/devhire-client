@@ -3,7 +3,7 @@ import { use } from "react";
 
 const ApplicationList = ({ myApplicationPromise }) => {
     const applicationList = use(myApplicationPromise)
-    console.log(applicationList);
+    // console.log(applicationList);
 
     return (
 
@@ -20,7 +20,7 @@ const ApplicationList = ({ myApplicationPromise }) => {
                         </th>
                         <th>Company</th>
                         <th>Position</th>
-                        <th>Your Email</th>
+                        <th>Your EmaPil</th>
                         <th></th>
                     </tr>
                 </thead>
