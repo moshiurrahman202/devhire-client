@@ -34,7 +34,7 @@ const MyPostedJob = () => {
         }
       >
         <MyPostedJobList
-          jobPostedByEmailPromise={jobPostedByEmailPromise(user.email)}
+          jobPostedByEmailPromise={jobPostedByEmailPromise(user.email, user.accessToken)}
         />
       </Suspense>
     </div>
