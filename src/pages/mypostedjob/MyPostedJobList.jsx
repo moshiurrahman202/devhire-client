@@ -2,9 +2,9 @@ import { use } from "react";
 import { Link } from "react-router";
 
 
-const MyPostedJobList = ({jobPostedByEmailPromise}) => {
-    const jobList = use(jobPostedByEmailPromise);
-    console.log(jobList);
+const MyPostedJobList = ({jobCreatedByPromise}) => {
+    const jobList = use(jobCreatedByPromise);
+    // console.log(jobList);
     
     return (
         <div className="overflow-x-auto">

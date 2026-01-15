@@ -1,10 +1,11 @@
 import { Suspense } from "react";
 import useAuth from "../../hooks/useAuth";
 import MyPostedJobList from "./MyPostedJobList";
-import { jobPostedByEmailPromise } from "../../api/jobpostedApi";
+import useJobApi from "../../api/useJobApi";
 
 const MyPostedJob = () => {
   const { user, loading } = useAuth();
+  const jobCreatedByPromise = useJobApi()
 
   // 🔒 Auth loading guard
   if (loading) {
@@ -34,7 +35,7 @@ const MyPostedJob = () => {
         }
       >
         <MyPostedJobList
-          jobPostedByEmailPromise={jobPostedByEmailPromise(user.email, user.accessToken)}
+          jobCreatedByPromise={jobCreatedByPromise(user.email)}
         />
       </Suspense>
     </div>
