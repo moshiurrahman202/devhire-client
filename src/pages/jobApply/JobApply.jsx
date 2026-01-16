@@ -1,64 +1,103 @@
-import axios from 'axios';
+import axios from "axios";
 import { useNavigate, useParams } from "react-router";
 import useAuth from "../../hooks/useAuth";
-import Swal from 'sweetalert2';
-
+import Swal from "sweetalert2";
+import { IoClose } from "react-icons/io5";
 
 const JobApply = () => {
     const { user } = useAuth();
-    const {id: jobId} = useParams();
+    const { id: jobId } = useParams();
     const navigate = useNavigate();
 
-    const handleJobApply = e => {
+    const handleJobApply = (e) => {
         e.preventDefault();
-        const linkedin = e.target.linkedin.value;
-        const github = e.target.github.value;
-        const resume = e.target.resume.value;
+
+        const form = e.target;
         const application = {
             jobId,
             applicant: user.email,
-            linkedin,
-            github,
-            resume
-        }
-        axios.post("http://localhost:3000/applications",{...application}
-        )
-        .then(res => {
-            if(res.data.insertedId){
-                Swal.fire({
-  position: "top-end",
-  icon: "success",
-  title: "Your application has been sunmitted!",
-  showConfirmButton: false,
-  timer: 1500
-});
-                
-            }
-        })
-        .then(err => {
-            console.log(err);
-        })
-    }
-    const goBack = () => {
-        navigate(-1)
-    }
+            linkedin: form.linkedin.value,
+            github: form.github.value,
+            resume: form.resume.value,
+        };
+
+        axios.post("http://localhost:3000/applications", application)
+            .then((res) => {
+                if (res.data.insertedId) {
+                    Swal.fire({
+                        icon: "success",
+                        title: "Application Submitted!",
+                        text: "We wish you good luck",
+                        confirmButtonColor: "#2563eb",
+                    });
+                    navigate("/");
+                }
+            })
+            .catch((err) => console.error(err));
+
+
+    };
+
     return (
-        <div>
-            <h1 className="text-3xl items-center">Go back to see job <span onClick={goBack} className="underline cursor-pointer text-xl">details?</span></h1>
-            <form onSubmit={handleJobApply} className="fieldset bg-base-200 border-base-300 rounded-box border p-4 flex flex-col justify-center items-center">
-                <legend className="fieldset-legend">Enter Here Your Information</legend>
+        <div className="min-h-screen bg-base-200 flex items-center justify-center px-4">
+            <div className="w-full max-w-lg bg-base-100 rounded-xl shadow-lg p-6 relative">
 
-                <label className="label">linkedin</label>
-                <input name="linkedin" type="ulr" className="input" placeholder="linkedin URL" />
+                <button
+                    onClick={() => navigate(-1)}
+                    className="btn btn-sm btn-circle btn-ghost absolute top-4 right-4"
+                >
+                    <IoClose size={18} />
+                </button>
 
-                <label className="label">GitHub</label>
-                <input name="github" type="url" className="input" placeholder="GitHub URL" />
+                {/* Heading */}
+                <h1 className="text-2xl font-bold text-center mb-2">
+                    Apply for this Job
+                </h1>
+                <p className="text-center text-gray-500 mb-6">
+                    Logged in as <span className="font-medium">{user?.email}</span>
+                </p>
 
-                <label className="label">Resume</label>
-                <input name="resume" type="url" className="input" placeholder="Resume URL" />
-                <input type="submit" className="btn" value="Submit" />
-            </form>
+                {/* Form */}
+                <form onSubmit={handleJobApply} className="space-y-4">
 
+                    <div>
+                        <label className="label font-medium">LinkedIn Profile</label>
+                        <input
+                            name="linkedin"
+                            type="url"
+                            required
+                            className="input input-bordered w-full"
+                            placeholder="https://linkedin.com/in/username"
+                        />
+                    </div>
+
+                    <div>
+                        <label className="label font-medium">GitHub Profile</label>
+                        <input
+                            name="github"
+                            type="url"
+                            required
+                            className="input input-bordered w-full"
+                            placeholder="https://github.com/username"
+                        />
+                    </div>
+
+                    <div>
+                        <label className="label font-medium">Resume Link</label>
+                        <input
+                            name="resume"
+                            type="url"
+                            required
+                            className="input input-bordered w-full"
+                            placeholder="Google Drive / Portfolio link"
+                        />
+                    </div>
+
+                    <button className="btn btn-primary w-full mt-4">
+                        Submit Application
+                    </button>
+                </form>
+            </div>
         </div>
     );
 };
