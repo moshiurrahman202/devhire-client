@@ -38,7 +38,7 @@ const AuthProvider = ({ children }) => {
         const unSubscribe = onAuthStateChanged(auth, currentUser => {
             setUser(currentUser);
             setLoading(false);
-            console.log(currentUser)
+            // console.log(currentUser)
             // if(currentUser?.email){
             //     axios.post("https://devhire-server.vercel.app/jwt", {email: currentUser.email}, {
             //         withCredentials: true

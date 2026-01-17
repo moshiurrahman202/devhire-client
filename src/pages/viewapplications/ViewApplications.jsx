@@ -5,9 +5,9 @@ import Swal from "sweetalert2";
 
 const ViewApplications = () => {
     const jobApplicant = useLoaderData()
-    console.log(jobApplicant, "length => ", jobApplicant.length);
+    // console.log(jobApplicant, "length => ", jobApplicant.length);
     const handleStatus = (e, id) => {
-        console.log(e.target.value, id);
+        // console.log(e.target.value, id);
         axios.patch(`https://devhire-server.vercel.app/applications/${id}`, {status: e.target.value})
         .then(res => {
             if(res.data.modifiedCount){
