@@ -8,7 +8,7 @@ const ViewApplications = () => {
     console.log(jobApplicant, "length => ", jobApplicant.length);
     const handleStatus = (e, id) => {
         console.log(e.target.value, id);
-        axios.patch(`http://localhost:3000/applications/${id}`, {status: e.target.value})
+        axios.patch(`https://devhire-server.vercel.app/applications/${id}`, {status: e.target.value})
         .then(res => {
             if(res.data.modifiedCount){
                 Swal.fire({
