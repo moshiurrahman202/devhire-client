@@ -1,7 +1,7 @@
 import axios from "axios";
 import useAuth from "./useAuth";
 
-const axiosInstance = axios.create({ baseURL: "https://devhire-server.vercel.app" })
+const axiosInstance = axios.create({ baseURL: "https://devhire-server-47ycxg3dh-moshiurrahman202s-projects.vercel.app" })
 const useAxiosToken = () => {
     const { user, signOutUser } = useAuth();
     axiosInstance.interceptors.request.use(config => {

@@ -40,7 +40,7 @@ const AuthProvider = ({ children }) => {
             setLoading(false);
             // console.log(currentUser)
             // if(currentUser?.email){
-            //     axios.post("https://devhire-server.vercel.app/jwt", {email: currentUser.email}, {
+            //     axios.post("https://devhire-server-47ycxg3dh-moshiurrahman202s-projects.vercel.app/jwt", {email: currentUser.email}, {
             //         withCredentials: true
             //     })
             //     .then(res => {

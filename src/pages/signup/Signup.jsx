@@ -2,11 +2,15 @@ import Lottie from "lottie-react";
 import signupanimation from "../../assets/lotties/Signup.json"
 import { useContext } from "react";
 import { AuthContext } from "../../context/AuthContext";
-import SocialLogin from "../shared/SocialLogin";import { Link } from "react-router";
-;
+import SocialLogin from "../shared/SocialLogin";
+import { Link, useLocation, useNavigate } from "react-router";
 
 const Signup = () => {
   const { createUser } = useContext(AuthContext);
+  const navigate = useNavigate()
+  const location = useLocation();
+  const from = location.state || "/";
+
   const handleSignup = e => {
     e.preventDefault();
     const form = e.target
@@ -17,6 +21,7 @@ const Signup = () => {
     createUser(email, pass)
     .then(res => {
       console.log(res.user);
+      navigate(from)
       
     })
     .catch(err => {

@@ -21,7 +21,7 @@ const AddJob = () => {
         // add status
         restObject.status = "active";
 
-        axios.post("https://devhire-server.vercel.app/jobs", restObject)
+        axios.post("https://devhire-server-47ycxg3dh-moshiurrahman202s-projects.vercel.app/jobs", restObject)
             .then(res => {
                 if (res.data.insertedId) {
                     Swal.fire({
