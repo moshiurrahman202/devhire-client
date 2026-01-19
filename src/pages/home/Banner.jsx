@@ -1,4 +1,4 @@
-import { color, motion } from "motion/react"
+import { motion } from "framer-motion";
 import bannerIMG1 from "../../assets/bannerPhoto/banner-1.jpg"
 import bannerIMG2 from "../../assets/bannerPhoto/banner-2.jpg"
 

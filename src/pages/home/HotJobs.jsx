@@ -4,7 +4,7 @@ import JobsCard from "../shared/JobsCard";
 
 const HotJobs = ({jobsPromise}) => {
     const jobs = use(jobsPromise)
-    console.log(jobs);
+    // console.log(jobs);
     return (
         <div>
             <h1 className="text-center text-7xl font-semibold my-5">Hot Jobs</h1>

@@ -19,7 +19,7 @@ const SignIn = () => {
     signIn(email, pass)
     .then(userCredential => {
       Navigate(from)
-      console.log(userCredential.user);
+      console.log(userCredential.user.email);
     })
     .catch(err => {
       console.log(err.code);
