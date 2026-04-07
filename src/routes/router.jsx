@@ -31,7 +31,7 @@ const router = createBrowserRouter([
       },
       {
         path: 'jobs/:id',
-        loader: ({ params }) => fetch(`https://devhire-server.vercel.app/api/jobs/${params.id}`),
+        loader: ({ params }) => fetch(`https://devhire-server.vercel.app/jobs/${params.id}`),
         Component: JobDetails,
       },
       {
@@ -53,7 +53,7 @@ const router = createBrowserRouter([
       {
         path: "applications/:id",
         element: <PrivateRoute><ViewApplications></ViewApplications></PrivateRoute>,
-        loader: ({params}) => fetch(`https://devhire-server.vercel.app/api/applications/job/${params.id}`)
+        loader: ({params}) => fetch(`https://devhire-server.vercel.app/applications/job/${params.id}`)
       }
     ]
   },
