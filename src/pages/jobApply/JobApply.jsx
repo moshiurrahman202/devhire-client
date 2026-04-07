@@ -21,7 +21,7 @@ const JobApply = () => {
             resume: form.resume.value,
         };
 
-        axios.post("https://devhire-server-47ycxg3dh-moshiurrahman202s-projects.vercel.app/applications", application)
+        axios.post("https://devhire-server.vercel.app/applications", application)
             .then((res) => {
                 if (res.data.insertedId) {
                     Swal.fire({

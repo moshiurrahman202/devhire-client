@@ -5,7 +5,7 @@ import HotJobs from "./HotJobs";
 
 
 const Home = () => {
-    const jobsPromise = fetch("https://devhire-server-47ycxg3dh-moshiurrahman202s-projects.vercel.app/jobs")
+    const jobsPromise = fetch("https://devhire-server.vercel.app/api/jobs")
         .then(res => res.json());
 
     return (
